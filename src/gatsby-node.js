@@ -26,26 +26,18 @@ exports.sourceNodes = async (
     'https://radar.squat.net/api/1.2/search/events.json?facets[group][]=23333',
   ).then(res => res.json());
 
-  let events = Object.keys(json.result).map(key => ({
-    id: key,
-    centre: centres[0],
-    ...json.result[key],
-  }));
+  let events = Object.keys(json.result).map(key => {
+    const nodeMeta = {
+      id: createNodeId(key),
+      parent: null,
+      children: [],
+      internal: {
+        type: `event`,
+        contentDigest: createContentDigest(json.result[key]),
+      },
+    };
+    return {...nodeMeta, ...json.result[key], centre: centres[0]};
+  });
 
-  const nodeMeta = {
-    id: createNodeId(`my-data-${events.id}`),
-    parent: null,
-    children: [],
-    internal: {
-      type: `events`, // each event neets to be a type of event, not this big splurge
-      contentDigest: createContentDigest(events),
-    },
-  };
-
-  // const node = Object.assign({}, events, nodeMeta);
-  const node = {...events, ...nodeMeta};
-  createNode(node);
-
-  console.log(centres);
-  console.log(events);
+  events.forEach(node => createNode(node));
 };
