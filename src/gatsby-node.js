@@ -1,23 +1,51 @@
 const {
-    flattenArray,
-    getCurrentTimestamp,
-    isArray,
-    isObject,
-    isObjEmpty,
-} = require('./utils/helpers')
+  flattenArray,
+  getCurrentTimestamp,
+  isArray,
+  isObject,
+  isObjEmpty,
+} = require('./utils/helpers');
+
+const fetch = require('node-fetch');
 
 // Set the current active enviroment
 let activeEnv =
-    process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
 
 // If we are in dev, ignore the fact that we may be using a fake SSL certificate
 if (activeEnv == 'development') {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 }
 
 exports.sourceNodes = async (
-    { actions: { createNode }, createContentDigest, createNodeId },
-    { plugins }
+  {actions: {createNode}, createContentDigest, createNodeId},
+  {centres},
 ) => {
-    // Do your stuff!
-}
+  // Do your stuff!
+  let json = await fetch(
+    'https://radar.squat.net/api/1.2/search/events.json?facets[group][]=23333',
+  ).then(res => res.json());
+
+  let events = Object.keys(json.result).map(key => ({
+    id: key,
+    centre: centres[0],
+    ...json.result[key],
+  }));
+
+  const nodeMeta = {
+    id: createNodeId(`my-data-${events.id}`),
+    parent: null,
+    children: [],
+    internal: {
+      type: `events`, // each event neets to be a type of event, not this big splurge
+      contentDigest: createContentDigest(events),
+    },
+  };
+
+  // const node = Object.assign({}, events, nodeMeta);
+  const node = {...events, ...nodeMeta};
+  createNode(node);
+
+  console.log(centres);
+  console.log(events);
+};
