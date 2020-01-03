@@ -27,7 +27,7 @@ exports.sourceNodes = async (
   ).then(res => res.json());
 
   let events = Object.keys(json.result).map(key => {
-    const nodeMeta = {
+    return {
       id: createNodeId(key),
       parent: null,
       children: [],
@@ -35,8 +35,9 @@ exports.sourceNodes = async (
         type: `event`,
         contentDigest: createContentDigest(json.result[key]),
       },
+      centre: centres[0],
+      ...json.result[key],
     };
-    return {...nodeMeta, ...json.result[key], centre: centres[0]};
   });
 
   events.forEach(node => createNode(node));
