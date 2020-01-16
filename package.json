@@ -10,6 +10,7 @@
     "@babel/runtime": "^7.4.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-gatsby-package": "^0.1.4",
+    "jest": "^24.9.0",
     "node-fetch": "^2.6.0"
   },
   "keywords": [
@@ -29,7 +30,8 @@
   "scripts": {
     "build": "babel src --out-dir .",
     "prepare": "cross-env NODE_ENV=production npm run build",
-    "watch": "babel -w src --out-dir ."
+    "watch": "babel -w src --out-dir .",
+		"test": "jest"
   },
   "peerDependencies": {
     "gatsby": ">2.0.15"

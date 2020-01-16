@@ -1,10 +1,14 @@
-const {
-  flattenArray,
-  getCurrentTimestamp,
-  isArray,
-  isObject,
-  isObjEmpty,
-} = require('./utils/helpers');
+// const {
+//   flattenArray,
+//   getCurrentTimestamp,
+//   isArray,
+//   isObject,
+//   isObjEmpty,
+// } = require('./utils/helpers');
+
+const {ace, centreUrl} = require('./radar-helpers');
+
+console.log(centreUrl(ace));
 
 const fetch = require('node-fetch');
 
