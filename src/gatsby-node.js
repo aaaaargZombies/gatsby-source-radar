@@ -6,9 +6,15 @@
 //   isObjEmpty,
 // } = require('./utils/helpers');
 
-const {ace, centreUrl} = require('./radar-helpers');
+const {
+  centreUUID,
+  centreNode,
+  centreURL,
+  eventsURL,
+  locationURL,
+} = require('./radar-helpers');
 
-console.log(centreUrl(ace));
+// console.log(centreUrl(ace));
 
 const fetch = require('node-fetch');
 
@@ -26,23 +32,59 @@ exports.sourceNodes = async (
   {centres},
 ) => {
   // Do your stuff!
-  let json = await fetch(
-    'https://radar.squat.net/api/1.2/search/events.json?facets[group][]=23333',
+  let groupJson = await fetch(
+    'https://radar.squat.net/api/1.2/search/groups.json?fields=offline,title,uuid&facets[country][]=GB',
   ).then(res => res.json());
 
-  let events = Object.keys(json.result).map(key => {
-    return {
-      id: createNodeId(key),
+  const genNodes = async (centreName, groupJson) => {
+    let centreJson = await fetch(centreURL(centreName, groupJson)).then(res =>
+      res.json(),
+    );
+
+    let locationJson = await fetch(locationURL(centreName, groupJson)).then(
+      res => res.json(),
+    );
+
+    let eventJson = await fetch(eventsURL(centreName, groupJson)).then(res =>
+      res.json(),
+    );
+
+    let centreID = createNodeId(centreName);
+
+    let events = Object.keys(eventJson.result).map(key => {
+      return {
+        id: createNodeId(key),
+        parent: null,
+        children: [],
+        internal: {
+          type: `event`,
+          contentDigest: createContentDigest(eventJson.result[key]),
+        },
+        centre___NODE: centreID,
+        ...eventJson.result[key],
+      };
+    });
+
+    createNode({
+      id: centreID,
       parent: null,
       children: [],
       internal: {
-        type: `event`,
-        contentDigest: createContentDigest(json.result[key]),
+        type: `centre`,
+        contentDigest: createContentDigest({
+          lat: locationJson.map.lat,
+          lon: locationJson.map.lon,
+          events___NODE: events.map(node => node.id),
+          ...centreJson,
+        }),
       },
-      centre: centres[0],
-      ...json.result[key],
-    };
-  });
+      lat: locationJson.map.lat,
+      lon: locationJson.map.lon,
+      events___NODE: events.map(node => node.id),
+      ...centreJson,
+    });
+    events.forEach(node => createNode(node));
+  };
 
-  events.forEach(node => createNode(node));
+  centres.forEach(name => genNodes(name, groupJson));
 };

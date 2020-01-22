@@ -1,22 +1,33 @@
-const ace = 'The Autonomous Centre of Edinburgh';
-
-const centreUUID = (name, groupJSON) => {
-  const key = Object.keys(groupJSON.result).filter(
-    k => groupJSON.result[k].title === name,
-  )[0];
-  return groupJSON.result[key].uuid;
-};
+// https://radar.squat.net/api/1.2/search/groups.json?fields=offline,title,uuid&facets[country][]=GB
 
 const centreNode = (name, groupJSON) =>
   Object.keys(groupJSON.result).filter(
     k => groupJSON.result[k].title === name,
   )[0];
 
+const centreUUID = (name, groupJSON) =>
+  groupJSON.result[centreNode(name, groupJSON)].uuid;
+
 // takes a name and generates a centre url
 
-const centreUrl = name => `www.radar.squat.net/${name}`;
+const centreURL = (name, groupJSON) =>
+  `https://radar.squat.net/api/1.2/node/${centreUUID(name, groupJSON)}.json`;
 
 // takes a name and generates a location url
-// takes a name and generates an events url
+const locationURL = (name, groupJSON) =>
+  groupJSON.result[centreNode(name, groupJSON)].offline[0].uri + '.json';
 
-module.exports = {ace, centreUrl, centreUUID, centreNode};
+// takes a name and generates an events url
+const eventsURL = (name, groupJSON) =>
+  `https://radar.squat.net/api/1.2/search/events.json?facets[group][]=${centreNode(
+    name,
+    groupJSON,
+  )}`;
+
+module.exports = {
+  centreUUID,
+  centreNode,
+  centreURL,
+  eventsURL,
+  locationURL,
+};
