@@ -1,0 +1,76 @@
+{
+  "category": [],
+  "body": {
+    "value": "<p>DIY Space For London is a cooperatively-run social centre located in South London, just off Old Kent Road. We offer low cost creative facilities, meeting rooms and social space as well as space for screenings, talks and performances. Our in-house record shop <a href=\"http://diyspaceforlondon.org/about/tome/\">Tome Records</a> is Wednesday-Sunday from midday. We run on a members\u2019 club model so that everyone has equal say in how the place is run. The space works to promote the ideas of mutual aid (helping each other) and cooperation (working together). Providing a welcoming space for everyone, including those whose voices and contributions are not always heard or appreciated, is a top priority for us.</p>\n",
+    "summary": "",
+    "format": "rich_text_editor"
+  },
+  "image": {
+    "file": {
+      "uri": "https://radar.squat.net/api/1.2/file/a7377abf-f76b-4008-88e6-aef82cda2589",
+      "id": "a7377abf-f76b-4008-88e6-aef82cda2589",
+      "resource": "file"
+    }
+  },
+  "email": "hello@diyspaceforlondon.org",
+  "link": [
+    {
+      "url": "https://diyspaceforlondon.org/",
+      "attributes": [],
+      "display_url": null
+    }
+  ],
+  "offline": [
+    {
+      "uri": "https://radar.squat.net/api/1.2/location/95e2b4fe-8713-4060-bd62-2505dd73043a",
+      "id": "95e2b4fe-8713-4060-bd62-2505dd73043a",
+      "resource": "location"
+    }
+  ],
+  "phone": "020 7635 9470",
+  "topic": [],
+  "flyer": [],
+  "group_group": true,
+  "group_logo": [],
+  "opening_times": {
+    "value": "<p>Monday: 12:00pm - 11:30pm<br />Tuesday: 12:00pm - 11:30pm<br />Wednesday: 12:00pm - 11:30pm<br />Thursday: 12:00pm - 11:30pm<br />Friday: 12:00pm - 12:00am<br />Saturday: 12:00pm - 12:00am<br />Sunday: 12:00pm - 11:00pm</p>\n",
+    "format": "rich_text_editor"
+  },
+  "notifications": ["cavale@squat.net"],
+  "active": false,
+  "members": [
+    {
+      "uri": "https://radar.squat.net/api/1.2/user/116",
+      "id": "116",
+      "resource": "user"
+    }
+  ],
+  "members__1": [
+    {
+      "uri": "https://radar.squat.net/api/1.2/user/116",
+      "id": "116",
+      "resource": "user"
+    }
+  ],
+  "members__2": [],
+  "members__3": [],
+  "radar_group_listed_by": [],
+  "nid": "157485",
+  "vid": "166844",
+  "is_new": false,
+  "type": "group",
+  "title": "DIY Space for London",
+  "language": "en",
+  "url": "https://radar.squat.net/en/london/diy-space-london",
+  "edit_url": "https://radar.squat.net/en/node/157485/edit",
+  "status": "1",
+  "promote": "0",
+  "sticky": "0",
+  "created": "1506258388",
+  "changed": "1508490893",
+  "feed_nid": null,
+  "flag_abuse_node_user": [],
+  "flag_abuse_whitelist_node_user": [],
+  "uuid": "01d0f3dd-ff89-4556-9ef9-14f2e551b618",
+  "vuuid": "1569fbb1-e45f-47ae-8153-0d1813b6d4ca"
+}

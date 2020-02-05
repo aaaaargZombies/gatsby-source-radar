@@ -12,6 +12,8 @@ const {
   centreURL,
   eventsURL,
   locationURL,
+  centreImageURL,
+  eventImageURL,
 } = require('./radar-helpers');
 
 // console.log(centreUrl(ace));
@@ -60,6 +62,7 @@ exports.sourceNodes = async (
           type: `event`,
           contentDigest: createContentDigest(eventJson.result[key]),
         },
+        imageUrl: eventImageURL(eventJson.result[key]),
         centre___NODE: centreID,
         ...eventJson.result[key],
       };
@@ -75,14 +78,17 @@ exports.sourceNodes = async (
           lat: locationJson.map.lat,
           lon: locationJson.map.lon,
           events___NODE: events.map(node => node.id),
+          imageUrl: await centreImageURL(centreJson),
           ...centreJson,
         }),
       },
       lat: locationJson.map.lat,
       lon: locationJson.map.lon,
+      imageUrl: await centreImageURL(centreJson),
       events___NODE: events.map(node => node.id),
       ...centreJson,
     });
+
     events.forEach(node => createNode(node));
   };
 

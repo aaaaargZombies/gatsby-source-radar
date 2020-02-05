@@ -1,0 +1,18 @@
+{
+  "body": {
+    "value": "<p>Thirty years ago, a social movement helped bring down one of the most powerful British Prime Ministers of the 20th Century. For the 30th anniversary of the Poll Tax rebellion, Simon Hannah looks back on those tumultuous days of resistance, telling the story of the people that beat the bailiffs, rioted for their rights and defied a government.<br /><br />Starting in Scotland where the 'Community Charge' was first trialled, Can't Pay, Won't Pay immerses the reader in the gritty history of the rebellion. Amidst the drama of large scale protests and blockaded estates a number of key figures and groups emerge: Neil Kinnock and Tommy Sheridan; Militant, Class War and the Metropolitan Police.<br /><br />Assessing this legacy today, Hannah demonstrates the centrality of the Poll Tax resistance as a key chapter in the history of British popular uprisings, Labour Party factionalism, the anti-socialist agenda and failed Tory ideology. </p>\n",
+    "summary": "",
+    "format": "rich_text_editor"
+  },
+  "image": {
+    "file": {
+      "uri": "https://radar.squat.net/api/1.2/file/e85a8447-6c47-4042-86ee-a1e716bc62e5",
+      "id": "e85a8447-6c47-4042-86ee-a1e716bc62e5",
+      "resource": "file",
+      "filename": "polltax.jpg"
+    }
+  },
+  "price": null,
+  "title": "Can't Pay, Won't Pay: The fight to stop the Poll Tax",
+  "uuid": "d9ba5a2c-b21b-403e-b0be-d19115acfa33"
+}
