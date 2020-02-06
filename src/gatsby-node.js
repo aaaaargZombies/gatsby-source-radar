@@ -1,11 +1,3 @@
-// const {
-//   flattenArray,
-//   getCurrentTimestamp,
-//   isArray,
-//   isObject,
-//   isObjEmpty,
-// } = require('./utils/helpers');
-
 const {
   centreUUID,
   centreNode,
@@ -15,8 +7,6 @@ const {
   centreImageURL,
   eventImageURL,
 } = require('./radar-helpers');
-
-// console.log(centreUrl(ace));
 
 const fetch = require('node-fetch');
 
