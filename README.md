@@ -1,6 +1,8 @@
-# gatsby-source-starter
+# gatsby-source-radar
 
-This is a starter plugin for building a Gatsby JS Source Plugin. It helps to update this as you go.
+Currently only deals with centres in the UK.
+
+The plugin takes named centres and adds their details and details of events they host to graphql.
 
 ## Set The Config
 
@@ -10,12 +12,16 @@ In `gatsby-config.js`:
 module.exports = {
   plugins: [
     {
-      resolve: 'gatsby-source-starter',
-      options: {},
+      resolve: 'gatsby-source-radar',
+      options: {
+        centres: ['The Autonomous Centre of Edinburgh'],
+      },
     },
   ],
 };
 ```
+
+Add an array of the centres you want to query, the name should match exactly the name listed on [radar.squat.net](radar.squat.net).
 
 # radar API notes
 
