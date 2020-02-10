@@ -28,17 +28,11 @@ const locationURL = (name, groupJSON) =>
 
 // takes a name and generates an events url
 const eventsURL = (name, groupJSON) =>
-	// TODO get image url
-	// https://radar.squat.net/api/1.2/search/events.json?fields=uuid,title,image,body,datetime,price&facets[group][]=157485
 	`https://radar.squat.net/api/1.2/search/events.json?fields=offline,uuid,title,image,body,datetime,price&facets[group][]=${centreNode(
 		name,
 		groupJSON
 	)}`;
 
-// TODO event image
-// https://radar.squat.net/sites/default/files/{????}
-
-// needs test
 const eventImageURL = eventJSON => {
 	return eventJSON.image.file
 		? `https://radar.squat.net/sites/default/files/${eventJSON.image.file.filename}`
