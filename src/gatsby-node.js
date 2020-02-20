@@ -80,7 +80,6 @@ exports.sourceNodes = async (
 		});
 
 		events.forEach(node => createNode(node));
-		console.log("~~~~~~~~~~~~~~", centreName, "~~~~~~~~~~~~~~");
 	};
 
 	await Promise.all(centres.map(name => genNodes(name, groupJson)));
