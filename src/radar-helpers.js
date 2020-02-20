@@ -28,7 +28,7 @@ const locationURL = (name, groupJSON) =>
 
 // takes a name and generates an events url
 const eventsURL = (name, groupJSON) =>
-	`https://radar.squat.net/api/1.2/search/events.json?fields=offline,uuid,title,image,body,datetime,price&facets[group][]=${centreNode(
+	`https://radar.squat.net/api/1.2/search/events.json?fields=offline,uuid,title,image,body,date_time,price&facets[group][]=${centreNode(
 		name,
 		groupJSON
 	)}`;

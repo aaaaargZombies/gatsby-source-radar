@@ -29,7 +29,7 @@ test("Use name of centre to generate url for centre info", () => {
 
 test("Use name of centre to generate url for events info", () => {
 	expect(eventsURL("DIY Space for London", groupJSON)).toBe(
-		"https://radar.squat.net/api/1.2/search/events.json?fields=offline,uuid,title,image,body,datetime,price&facets[group][]=157485"
+		"https://radar.squat.net/api/1.2/search/events.json?fields=offline,uuid,title,image,body,date_time,price&facets[group][]=157485"
 	);
 });
 
