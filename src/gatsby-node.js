@@ -19,6 +19,8 @@ if (activeEnv == "development") {
 	process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 }
 
+const centreSlug = title => `/${title.toLowerCase().replace(/\s/g, "-")}`;
+
 exports.sourceNodes = async (
 	{ actions: { createNode }, createContentDigest, createNodeId },
 	{ centres }
@@ -73,6 +75,7 @@ exports.sourceNodes = async (
 					lon: locationJson.map.lon,
 					events___NODE: events.map(node => node.id),
 					imageUrl: await centreImageURL(centreJson),
+					slug: centreSlug(centreJson.title),
 					...centreJson
 				})
 			},
@@ -80,6 +83,7 @@ exports.sourceNodes = async (
 			lon: locationJson.map.lon,
 			imageUrl: await centreImageURL(centreJson),
 			events___NODE: events.map(node => node.id),
+			slug: centreSlug(centreJson.title),
 			...centreJson
 		});
 
