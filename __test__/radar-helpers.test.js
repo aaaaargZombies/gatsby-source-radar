@@ -11,14 +11,18 @@ const groupJSON = require("./groupsukoffline.json");
 const centreJSON = require("./centre.json");
 const eventJSON = require("./event.json");
 
+test("use name of centre to provide node number from groups JSON", () => {
+	expect(centreNode("DIY Space for London", groupJSON)).toBe("157485");
+});
+
+test("a centre that doesn't exist should return undefined", () => {
+	expect(centreNode("Not A Centre Name", groupJSON)).toBeUndefined();
+});
+
 test("use name of centre to provide UUID from groups JSON", () => {
 	expect(centreUUID("DIY Space for London", groupJSON)).toBe(
 		"01d0f3dd-ff89-4556-9ef9-14f2e551b618"
 	);
-});
-
-test("use name of centre to provide node from groups JSON", () => {
-	expect(centreNode("DIY Space for London", groupJSON)).toBe("157485");
 });
 
 test("Use name of centre to generate url for centre info", () => {

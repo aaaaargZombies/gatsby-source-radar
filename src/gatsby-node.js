@@ -29,6 +29,10 @@ exports.sourceNodes = async (
 	).then(res => res.json());
 
 	const genNodes = async (centreName, groupJson) => {
+		if (!centreNode(centreName, groupJson)) {
+			console.error(`No centre found on radar under name: "${centreName}"`);
+			return;
+		}
 		let centreJson = await fetch(centreURL(centreName, groupJson)).then(res =>
 			res.json()
 		);
